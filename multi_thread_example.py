@@ -2,7 +2,6 @@ import cv2
 import quirc
 import time
 import csv
-from csv import writer
 from ordered_set import OrderedSet
 import RPi.GPIO as GPIO
 import threading
