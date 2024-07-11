@@ -63,7 +63,7 @@ def motor_on(rotations):
     motor_pins = [pin1, pin2, pin3, pin4]
     step_count = 512
     direction = False
-    step_sleep = 0.002
+    step_sleep = 0.005
     step_sequence = [[1,0,0,1],
                     [1,0,0,0],
                     [1,1,0,0],
@@ -228,7 +228,7 @@ while True:
         if quirc.decode(img):
             decodedData = quirc.decode(img)
             if not decodedData:
-                print("No code :(")
+                print("No code :((")
             decodedText = decodedData[0][1].payload.decode('utf-8')
             print(decodedText)
             # check if code is the correct format & has already been scanned
@@ -249,7 +249,7 @@ while True:
         # if not, try again after 0.01 sec
         if not quirc.decode(img):
             print("No code :(")
-            time.sleep(0.1)
+            time.sleep(0.01)
 
     if image1.any():
         # take a picture
@@ -284,7 +284,7 @@ while True:
         # if not, try again after 0.01 sec
         if not quirc.decode(img1):
             print("No code :(")
-            time.sleep(0.1)
+            time.sleep(0.01)
            
     if(cv2.waitKey(1) == ord("q")):
         break
