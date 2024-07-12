@@ -63,7 +63,7 @@ def motor_on(rotations):
     motor_pins = [pin1, pin2, pin3, pin4]
     step_count = 64
     direction = False
-    step_sleep = 0.005
+    step_sleep = 0.01
     step_sequence = [[1,0,0,1],
                     [1,0,0,0],
                     [1,1,0,0],
