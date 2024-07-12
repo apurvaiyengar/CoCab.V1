@@ -61,9 +61,9 @@ def motor_on(rotations):
     GPIO.setup(pin3, GPIO.OUT)
     GPIO.setup(pin4, GPIO.OUT)
     motor_pins = [pin1, pin2, pin3, pin4]
-    step_count = 64
+    step_count = 8
     direction = False
-    step_sleep = 0.01
+    step_sleep = 0.005
     step_sequence = [[1,0,0,1],
                     [1,0,0,0],
                     [1,1,0,0],
@@ -239,7 +239,7 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    motor_on(1)
+                    motor_on(96)
                     lin_reverse()
                 else:
                     print("Bad code")
@@ -249,7 +249,7 @@ while True:
         # if not, try again after 0.01 sec
         if not quirc.decode(img):
             print("No code :(")
-            time.sleep(0.01)
+            time.sleep(0.002)
 
     if image1.any():
         # take a picture
@@ -274,7 +274,7 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    motor_on(1)
+                    motor_on(96)
                     lin_reverse()
                 else:
                     print("Bad code")
@@ -284,7 +284,7 @@ while True:
         # if not, try again after 0.01 sec
         if not quirc.decode(img1):
             print("No code :(")
-            time.sleep(0.01)
+            time.sleep(0.002)
            
     if(cv2.waitKey(1) == ord("q")):
         break
