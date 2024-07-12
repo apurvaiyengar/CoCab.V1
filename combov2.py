@@ -49,7 +49,7 @@ def pin_reset():
 pin_reset()   
 
 ## MOTOR FORWARD
-def motor_on(rotations):
+def motor_on(rotations, direction):
     # setting up  variables
     pin1 = 5
     pin2 = 6
@@ -62,7 +62,7 @@ def motor_on(rotations):
     GPIO.setup(pin4, GPIO.OUT)
     motor_pins = [pin1, pin2, pin3, pin4]
     step_count = 8
-    direction = False
+    #direction = False
     step_sleep = 0.005
     step_sequence = [[1,0,0,1],
                     [1,0,0,0],
@@ -209,7 +209,7 @@ open('sampledata.csv', 'w').truncate()
 step_counter = 0
 # begin camera feed
 while True:
-    motor_on(1)
+    motor_on(1, False)
     # load the image
     ret, image = cap.read()
     ret1, image1 = cap1.read()
@@ -239,11 +239,12 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    motor_on(96)
+                    motor_on(96, False)
                     lin_reverse()
+                    motor_on(96, True)
                 else:
                     print("Bad code")
-                    motor_on(1)
+                    motor_on(1, False)
             else:
                 print("No code")
         # if not, try again after 0.01 sec
@@ -274,11 +275,12 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    motor_on(96)
+                    motor_on(96, False)
                     lin_reverse()
+                    motor_on(96, True)
                 else:
                     print("Bad code")
-                    motor_on(1)
+                    motor_on(1, False)
             else:
                 print("No code")
         # if not, try again after 0.01 sec
