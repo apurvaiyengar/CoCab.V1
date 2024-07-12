@@ -61,7 +61,7 @@ def motor_on(rotations):
     GPIO.setup(pin3, GPIO.OUT)
     GPIO.setup(pin4, GPIO.OUT)
     motor_pins = [pin1, pin2, pin3, pin4]
-    step_count = 512
+    step_count = 64
     direction = False
     step_sleep = 0.005
     step_sequence = [[1,0,0,1],
@@ -238,12 +238,12 @@ while True:
                         codeSet.add(decodedText)
                     print("Good code!")
                     lin_forward()
-                    time.sleep(2)
-                    motor_on(2)
+                    time.sleep(1)
+                    motor_on(1)
                     lin_reverse()
                 else:
                     print("Bad code")
-                    motor_on(2)
+                    motor_on(1)
             else:
                 print("No code")
         # if not, try again after 0.01 sec
@@ -273,12 +273,12 @@ while True:
                         codeSet.add(decodedText1)
                     print("Good code!")
                     lin_forward()
-                    time.sleep(2)
-                    motor_on(2)
+                    time.sleep(1)
+                    motor_on(1)
                     lin_reverse()
                 else:
                     print("Bad code")
-                    motor_on(2)
+                    motor_on(1)
             else:
                 print("No code")
         # if not, try again after 0.01 sec
