@@ -111,7 +111,7 @@ def lin_forward():
     lin_count = 500
     step_sleep = 0.002
 
-    # forward
+    # reverse
     try:
         i = 0
         for i in range(lin_count):
