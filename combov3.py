@@ -51,15 +51,15 @@ pin_reset()
 ## MOTOR FORWARD
 def motor_on(rotations):
     # setting up variables
-    lin1 = 18
-    lin2 = 23
-    lin3 = 24
-    lin4 = 25
+    pin1 = 5
+    pin2 = 6
+    pin3 = 13
+    pin4 = 19
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(lin1, GPIO.OUT)
-    GPIO.setup(lin2, GPIO.OUT)
-    GPIO.setup(lin3, GPIO.OUT)
-    GPIO.setup(lin4, GPIO.OUT)
+    GPIO.setup(pin1, GPIO.OUT)
+    GPIO.setup(pin2, GPIO.OUT)
+    GPIO.setup(pin3, GPIO.OUT)
+    GPIO.setup(pin4, GPIO.OUT)
     lin_count = 13
     # 26 steps is a 1/8th turn
     total_count = lin_count * rotations
@@ -144,7 +144,52 @@ def lin_forward():
     pin_reset()
     
 
+# linear reverse function
+def lin_reverse():
+    # setting up variables
+    lin1 = 18
+    lin2 = 23
+    lin3 = 24
+    lin4 = 25
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(lin1, GPIO.OUT)
+    GPIO.setup(lin2, GPIO.OUT)
+    GPIO.setup(lin3, GPIO.OUT)
+    GPIO.setup(lin4, GPIO.OUT)
+    lin_count = 500
+    step_sleep = 0.002
 
+    # forward
+    try:
+        i = 0
+        for i in range(lin_count):
+            if i%4==0:
+                GPIO.output( lin4, GPIO.LOW )
+                GPIO.output( lin3, GPIO.LOW )
+                GPIO.output( lin2, GPIO.LOW )
+                GPIO.output( lin1, GPIO.HIGH )
+            elif i%4==1:
+                GPIO.output( lin4, GPIO.LOW )
+                GPIO.output( lin3, GPIO.HIGH )
+                GPIO.output( lin2, GPIO.LOW )
+                GPIO.output( lin1, GPIO.LOW )
+            elif i%4==2:
+                GPIO.output( lin4, GPIO.LOW )
+                GPIO.output( lin3, GPIO.LOW )
+                GPIO.output( lin2, GPIO.HIGH )
+                GPIO.output( lin1, GPIO.LOW )
+            elif i%4==3:
+                GPIO.output( lin4, GPIO.HIGH )
+                GPIO.output( lin3, GPIO.LOW )
+                GPIO.output( lin2, GPIO.LOW )
+                GPIO.output( lin1, GPIO.LOW )
+     
+            time.sleep( step_sleep )
+     
+    except KeyboardInterrupt:
+        pin_reset()
+        exit(1)
+    pin_reset()
    
 
 # TESTING DUAL CAMERA 
@@ -192,10 +237,10 @@ while True:
                     if decodedText not in open('sampledata.csv').read() and decodedText not in codeSet:
                         codeSet.add(decodedText)
                     print("Good code!")
-                    #lin_forward()
+                    lin_forward()
                     time.sleep(1)
                     motor_on(1)
-                    #lin_reverse()
+                    lin_reverse()
                     #motor_on(96, True)
                 else:
                     print("Bad code")
@@ -228,11 +273,11 @@ while True:
                     if decodedText1 not in open('sampledata.csv').read() and decodedText1 not in codeSet:
                         codeSet.add(decodedText1)
                     print("Good code!")
-                    #lin_forward()
+                    lin_forward()
                     time.sleep(1)
                     motor_on(1)
-                    #lin_reverse()
-                    motor_on(1)
+                    lin_reverse()
+                    #motor_on(1)
                 else:
                     print("Bad code")
                     motor_on(1)
