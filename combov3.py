@@ -70,7 +70,7 @@ def motor_on(rotations):
         i = 0
         for i in range(total_count):
             if i%4==0:
-                GPIO.output( pin4, GPIO.HIGH )
+                GPIO.output( pin4, GPIO.HIGH)
                 GPIO.output( pin3, GPIO.LOW )
                 GPIO.output( pin2, GPIO.LOW )
                 GPIO.output( pin1, GPIO.LOW )
@@ -88,7 +88,7 @@ def motor_on(rotations):
                 GPIO.output( pin4, GPIO.LOW )
                 GPIO.output( pin3, GPIO.LOW )
                 GPIO.output( pin2, GPIO.LOW )
-                GPIO.output( pin1, GPIO.HIGH )
+                GPIO.output( pin1, GPIO.HIGH)
      
             time.sleep( mot_sleep )
      
