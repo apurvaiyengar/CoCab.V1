@@ -64,7 +64,6 @@ def motor_on(rotations):
     # 26 steps is a 1/8th turn
     total_count = lin_count * rotations
     step_sleep = 0.1
-
   # forward
     try:
         i = 0
@@ -165,7 +164,7 @@ open('sampledata.csv', 'w').truncate()
 step_counter = 0
 # begin camera feed
 while True:
-    motor_on(1, False)
+    motor_on(1)
     # load the image
     ret, image = cap.read()
     ret1, image1 = cap1.read()

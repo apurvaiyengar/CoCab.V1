@@ -202,8 +202,11 @@ open('sampledata.csv', 'w').truncate()
 t1 = threading.Thread(target=process_camera, args=(cap, codeSet, "code detector top"))
 t2 = threading.Thread(target=process_camera, args=(cap1, codeSet, "code detector bottom"))
 
+print(t1)
+
 t1.start()
 t2.start()
+
 
 t1.join()
 t2.join()
