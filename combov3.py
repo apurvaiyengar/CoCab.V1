@@ -63,34 +63,34 @@ def motor_on(rotations):
     lin_count = 13
     # 26 steps is a 1/8th turn
     total_count = lin_count * rotations
-    step_sleep = 0.1
+    mot_sleep = 0.1
 
   # forward
     try:
         i = 0
         for i in range(total_count):
             if i%4==0:
-                GPIO.output( lin4, GPIO.HIGH )
-                GPIO.output( lin3, GPIO.LOW )
-                GPIO.output( lin2, GPIO.LOW )
-                GPIO.output( lin1, GPIO.LOW )
+                GPIO.output( pin4, GPIO.HIGH )
+                GPIO.output( pin3, GPIO.LOW )
+                GPIO.output( pin2, GPIO.LOW )
+                GPIO.output( pin1, GPIO.LOW )
             elif i%4==1:
-                GPIO.output( lin4, GPIO.LOW )
-                GPIO.output( lin3, GPIO.LOW )
-                GPIO.output( lin2, GPIO.HIGH )
-                GPIO.output( lin1, GPIO.LOW )
+                GPIO.output( pin4, GPIO.LOW )
+                GPIO.output( pin3, GPIO.LOW )
+                GPIO.output( pin2, GPIO.HIGH )
+                GPIO.output( pin1, GPIO.LOW )
             elif i%4==2:
-                GPIO.output( lin4, GPIO.LOW )
-                GPIO.output( lin3, GPIO.HIGH )
-                GPIO.output( lin2, GPIO.LOW )
-                GPIO.output( lin1, GPIO.LOW )
+                GPIO.output( pin4, GPIO.LOW )
+                GPIO.output( pin3, GPIO.HIGH )
+                GPIO.output( pin2, GPIO.LOW )
+                GPIO.output( pin1, GPIO.LOW )
             elif i%4==3:
-                GPIO.output( lin4, GPIO.LOW )
-                GPIO.output( lin3, GPIO.LOW )
-                GPIO.output( lin2, GPIO.LOW )
-                GPIO.output( lin1, GPIO.HIGH )
+                GPIO.output( pin4, GPIO.LOW )
+                GPIO.output( pin3, GPIO.LOW )
+                GPIO.output( pin2, GPIO.LOW )
+                GPIO.output( pin1, GPIO.HIGH )
      
-            time.sleep( step_sleep )
+            time.sleep( mot_sleep )
      
     except KeyboardInterrupt:
         pin_reset()
