@@ -57,11 +57,11 @@ stepper = RpiMotorLib.BYJMotor("MyMotorOne", "Nema")
 time.sleep(0.5)
 
 def motor_on(rotations):
-    lin_count =13
+    lin_count =50
     total_count = lin_count * rotations
     i = 0
     while i in range(total_count):
-        stepper.motor_run(pins , 0.1, lin_count, False, True, "half", .05)
+        stepper.motor_run(pins , 0.1, lin_count, False, False, "half", .05)
 
 ## LINEAR FORWARD   
 def lin_forward():
@@ -266,115 +266,6 @@ webcam_stream.stop() # stop the webcam stream
 cv2.destroyAllWindows()
 
 #########################
-
-# TESTING DUAL CAMERA 
-cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L2)
-cap1 = cv2.VideoCapture('/dev/video2', cv2.CAP_V4L2) 
-
-## CAMERA SET UP
-cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
-cap1.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
-
-if cap.isOpened() is False :
-    exit(0)
-if cap1.isOpened() is False :
-    exit(0)
-# create an empty set for codes
-codeSet = OrderedSet()
-
-# for TESTING ONLY, clear csv of contents
-open('sampledata.csv', 'w').truncate()
-
-step_counter = 0
-# begin camera feed
-while True:
-    
-    # load the image
-    ret, image = cap.read()
-    ret1, image1 = cap1.read()
-    
-    # show the preview
-    cv2.imshow("code detector top", image)
-    cv2.imshow('code detector bottom', image1)
-    motor_on(1)
-    if image.any():
-        # take a picture
-        cv2.imwrite('testimage.jpg', image)
-        # prep the image for decoding
-        img = cv2.imread('testimage.jpg', cv2.IMREAD_GRAYSCALE)
-        ret, img2 = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-        # decode the image
-        qrCodeDetector = cv2.QRCodeDetector()
-        # if the image is decoded correctly, print the text
-        if quirc.decode(img):
-            decodedData = quirc.decode(img)
-            if not decodedData:
-                print("No code :((")
-            decodedText = decodedData[0][1].payload.decode('utf-8')
-            print(decodedText)
-            # check if code is the correct format & has already been scanned
-            if isinstance(decodedText, str) == True:
-                if len(decodedText) == 5 and decodedText[0].isalpha() == True and decodedText[1:4].isdigit() == True:
-                    if decodedText not in open('sampledata.csv').read() and decodedText not in codeSet:
-                        codeSet.add(decodedText)
-                    print("Good code!")
-                    lin_forward()
-                    time.sleep(1)
-                    motor_on(1)
-                    lin_reverse()
-                    #motor_on(96, True)
-                else:
-                    print("Bad code")
-                    motor_on(1)
-            else:
-                print("No code")
-        # if not, try again after 0.002 sec
-        if not quirc.decode(img):
-            print("No code :(")
-            #time.sleep(0.002)
-
-    if image1.any():
-        # take a picture
-        cv2.imwrite('testimage.jpg', image1)
-        # prep the image for decoding
-        img1 = cv2.imread('testimage.jpg', cv2.IMREAD_GRAYSCALE)
-        ret, img3 = cv2.threshold(img1, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-        # decode the image
-        qrCodeDetector = cv2.QRCodeDetector()
-        # if the image is decoded correctly, print the text
-        if quirc.decode(img1):
-            decodedData1 = quirc.decode(img1)
-            if not decodedData1:
-                print("No code :(")
-            decodedText1 = decodedData1[0][1].payload.decode('utf-8')
-            print(decodedText1)
-            # check if code is the correct format & has already been scanned
-            if isinstance(decodedText1, str) == True:
-                if len(decodedText1) == 5 and decodedText1[0].isalpha() == True and decodedText1[1:4].isdigit() == True:
-                    if decodedText1 not in open('sampledata.csv').read() and decodedText1 not in codeSet:
-                        codeSet.add(decodedText1)
-                    print("Good code!")
-                    lin_forward()
-                    time.sleep(1)
-                    motor_on(1)
-                    lin_reverse()
-                    #motor_on(1)
-                else:
-                    print("Bad code")
-                    motor_on(1)
-            else:
-                print("No code")
-        # if not, try again after 0.01 sec
-        if not quirc.decode(img1):
-            print("No code :(")
-            #time.sleep(0.002)
-           
-    if(cv2.waitKey(1) == ord("q")):
-        break
-# release camera and close all windows
-cap.release()
-cap1.release()
-cv2.destroyAllWindows()
 
 # convert set to a list
 codeList = list(codeSet)
