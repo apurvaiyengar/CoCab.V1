@@ -76,6 +76,7 @@ if __name__ == '__main__':
         # Populate the queue.
         if len(pending_task) < thread_num:
             ret, image = cap.read()
+            cv2.imshow("code detector top", image)
             if ret:
                 task = pool.apply_async(process_frame, (image.copy(),))
                 pending_task.append(task)
