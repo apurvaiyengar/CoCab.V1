@@ -177,7 +177,7 @@ class WebcamStream :
         # reading a single frame from vcap stream for initializing 
         self.grabbed , self.frame = self.cap.read()
         if self.grabbed is False :
-            print('[Exiting] No more frames to read')
+            print('[Exiting] No more frames to read1')
             exit(0)
 # self.stopped is set to False when frames are being read from self.vcap stream 
         self.stopped = True
