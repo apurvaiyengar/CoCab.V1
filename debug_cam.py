@@ -65,7 +65,7 @@ if __name__ == '__main__':
     cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L2)
     thread_num = cv2.getNumberOfCPUs()
     pool = ThreadPool(processes=thread_num)
-    pending_task = motor_on()
+    pending_task = motor_on(1)
 
     while True:
         # Consume the queue.
