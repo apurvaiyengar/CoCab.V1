@@ -210,13 +210,15 @@ open('sampledata.csv', 'w').truncate()
 step_counter = 0
 # begin camera feed
 while True:
-    motor_on(1, False)
+    
     # load the image
     ret, image = cap.read()
     ret1, image1 = cap1.read()
+    
     # show the preview
     cv2.imshow("code detector top", image)
     cv2.imshow('code detector bottom', image1)
+    motor_on(1)
     if image.any():
         # take a picture
         cv2.imwrite('testimage.jpg', image)
@@ -251,7 +253,7 @@ while True:
         # if not, try again after 0.002 sec
         if not quirc.decode(img):
             print("No code :(")
-            time.sleep(0.002)
+            #time.sleep(0.002)
 
     if image1.any():
         # take a picture
@@ -287,7 +289,7 @@ while True:
         # if not, try again after 0.01 sec
         if not quirc.decode(img1):
             print("No code :(")
-            time.sleep(0.002)
+            #time.sleep(0.002)
            
     if(cv2.waitKey(1) == ord("q")):
         break
