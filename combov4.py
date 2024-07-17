@@ -171,9 +171,7 @@ class WebcamStream :
         
         # opening video capture stream 
         self.cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L2)
-        if self.cap.isOpened() is False :
-            print("Error turning cam on")
-            exit(0)
+        self.cap.isOpened()
         fps_input_stream = int(self.cap.get(5))
             
         # reading a single frame from vcap stream for initializing 
