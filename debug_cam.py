@@ -137,6 +137,8 @@ if __name__ == '__main__':
     cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L2)
     cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
     cap.isOpened()
+    if cap.isOpened() is False :
+        exit(0)
     thread_num = cv2.getNumberOfCPUs()
     pool = ThreadPool(processes=thread_num)
     pending_task = deque()
