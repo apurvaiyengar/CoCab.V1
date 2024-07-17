@@ -64,7 +64,7 @@ stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
 ## MOTOR FORWARD
 def motor_on(rotations):
     # setting up variables
-    lin_count = 25
+    lin_count = 50
     total_count = lin_count * rotations
     i = 0
     while i in range(total_count):
