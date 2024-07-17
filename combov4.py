@@ -172,10 +172,10 @@ class WebcamStream :
         # opening video capture stream 
         self.cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L2)
         self.cap.isOpened()
-        fps_input_stream = int(self.cap.get(5))
             
         # reading a single frame from vcap stream for initializing 
         self.grabbed , self.frame = self.cap.read()
+        cv2.imshow("code detector top", self.frame)
         if self.grabbed is False :
             print('[Exiting] No more frames to read1')
             exit(0)
