@@ -7,6 +7,7 @@ from csv import writer
 from ordered_set import OrderedSet
 from RpiMotorLib import RpiMotorLib
 import RPi.GPIO as GPIO
+from collections import deque 
 def pin_reset():
     pin1 = 5
     pin2 = 6
@@ -138,7 +139,7 @@ if __name__ == '__main__':
     cap.isOpened()
     thread_num = cv2.getNumberOfCPUs()
     pool = ThreadPool(processes=thread_num)
-    pending_task = motor_on(1)
+    pending_task = deque()
 
     while True:
         # Consume the queue.
