@@ -66,13 +66,14 @@ def motor_on(rotations):
     GPIO.output(pin6, GPIO.LOW)
     lin_count = 100
     total_count = lin_count * rotations
-    GPIO.output(pin_reset, GPIO.LOW) 
+   
     i = 0
     try:
         while i in range(total_count):
             GPIO.output(pin6, GPIO.HIGH)
             stepper.motor_go(False, "1/8" , lin_count, .02, False, .05)
             GPIO.output(pin6, GPIO.LOW)
+        GPIO.output(pin_reset, GPIO.LOW)
     except KeyboardInterrupt:
         pin_reset()
         exit(1)
