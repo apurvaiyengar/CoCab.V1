@@ -6,6 +6,7 @@ from csv import writer
 from ordered_set import OrderedSet
 import RPi.GPIO as GPIO
 from RpiMotorLib import RpiMotorLib
+import stop_all.py
 
 ## BOARD SET UP
 # assign pins
@@ -81,9 +82,12 @@ def motor_on(rotations):
             stepper.motor_go(False, "1/8" , lin_count, .02, False, .05)
             GPIO.output(pin6, GPIO.LOW)
     except KeyboardInterrupt:
+        time.sleep(5)
+        stop_all.close_all()
         pin_reset()
-        exit(1)
-    pin_reset()
+        
+    finally:
+        pin_reset()
 
 ## LINEAR FORWARD   
 def lin_forward():
@@ -180,7 +184,7 @@ def lin_reverse():
         exit(1)
     pin_reset()
    
-motor_on(3)
+motor_on(1)
 pin_reset()
 # TESTING DUAL CAMERA 
 cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L2)
