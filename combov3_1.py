@@ -14,6 +14,7 @@ pin2 = 6
 pin3 = 13
 pin4 = 19
 pin5 = 26
+pin6 = 4
 lin1 = 18
 lin2 = 23
 lin3 = 24
@@ -26,6 +27,7 @@ def pin_reset():
     pin3 = 13
     pin4 = 19
     pin5 = 26
+    pin6 = 4
     lin1 = 18
     lin2 = 23
     lin3 = 24
@@ -36,6 +38,7 @@ def pin_reset():
     GPIO.setup(pin3, GPIO.OUT)
     GPIO.setup(pin4, GPIO.OUT)
     GPIO.setup(pin5, GPIO.OUT)
+    GPIO.setup(pin6, GPIO.OUT)
     GPIO.setup(lin1, GPIO.OUT)
     GPIO.setup(lin2, GPIO.OUT)
     GPIO.setup(lin3, GPIO.OUT)
@@ -45,6 +48,7 @@ def pin_reset():
     GPIO.output(pin3, GPIO.LOW)
     GPIO.output(pin4, GPIO.LOW)
     GPIO.output(pin5, GPIO.LOW)
+    GPIO.output(pin6, GPIO.LOW)
     GPIO.output(lin1, GPIO.LOW )
     GPIO.output(lin2, GPIO.LOW )
     GPIO.output(lin3, GPIO.LOW )
@@ -64,11 +68,13 @@ stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
 ## MOTOR FORWARD
 def motor_on(rotations):
     # setting up variables
-    lin_count = 50
+    lin_count = 100
     total_count = lin_count * rotations
     i = 0
-    while i in range(total_count):
-        stepper.motor_go(False, "1/16" , lin_count, .01, False, .05)
+    while i in range(rotations):
+        GPIO.output(pin6, GPIO.HIGH)
+        stepper.motor_go(False, "1/8" , lin_count, .02, False, .05)
+        GPIO.output(pin6, GPIO.LOW)
 
 ## LINEAR FORWARD   
 def lin_forward():
