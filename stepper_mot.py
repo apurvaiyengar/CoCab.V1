@@ -66,6 +66,7 @@ def motor_on(rotations):
     GPIO.output(pin6, GPIO.LOW)
     lin_count = 100
     total_count = lin_count * rotations
+    GPIO.output(pin_reset, GPIO.LOW) 
     i = 0
     try:
         while i in range(total_count):
