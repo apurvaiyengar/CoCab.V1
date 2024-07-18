@@ -59,3 +59,6 @@ def motor_on(rotations):
         GPIO.output(pin6, GPIO.HIGH)
         stepper.motor_go(False, "1/8" , lin_count, .02, False, .05)
         GPIO.output(pin6, GPIO.LOW)
+
+
+motor_on(5)
