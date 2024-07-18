@@ -53,6 +53,7 @@ def motor_on(rotations):
     pin4 = 19
     pin5 = 26
     pin6 = 4 
+    pin_reset = 17
     GPIO_pins = (pin1, pin2, pin3) 
     direction= pin5       
     step = pin4
