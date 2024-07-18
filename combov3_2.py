@@ -192,6 +192,7 @@ cap1.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 if cap.isOpened() is False :
     exit(0)
 if cap1.isOpened() is False :
+    print('cam2 not on')
     exit(0)
 
 # create an empty set for codes
@@ -250,6 +251,7 @@ while True:
 
     if image1.any():
         # take a picture
+        print('cam 2 on')
         cv2.imwrite('testimage.jpg', image1)
         # prep the image for decoding
         img1 = cv2.imread('testimage.jpg', cv2.IMREAD_GRAYSCALE)
