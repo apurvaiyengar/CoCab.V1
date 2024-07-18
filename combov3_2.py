@@ -5,6 +5,7 @@ import csv
 from csv import writer
 from ordered_set import OrderedSet
 import RPi.GPIO as GPIO
+from RpiMotorLib import RpiMotorLib
 
 ## BOARD SET UP
 # assign pins
