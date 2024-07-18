@@ -42,13 +42,20 @@ def pin_reset():
 pin_reset()   
 ## STEPPER ROTATE
 #define GPIO pins
-GPIO_pins = (pin1, pin2, pin3) # Microstep Resolution MS1-MS3 -> GPIO Pin
-direction= pin4       # Direction -> GPIO Pin
-step = pin5      # Step -> GPIO Pin
 
-# Declare a instance of class pass GPIO pins numbers and the motor type
-stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
 def motor_on(rotations):
+    pin1 = 5
+    pin2 = 6
+    pin3 = 13
+    pin4 = 19
+    pin5 = 26
+    pin6 = 4 
+    GPIO_pins = (pin1, pin2, pin3) # Microstep Resolution MS1-MS3 -> GPIO Pin
+    direction= pin5       # Direction -> GPIO Pin
+    step = pin4      # Step -> GPIO Pin
+
+    # Declare a instance of class pass GPIO pins numbers and the motor type
+    stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(pin6, GPIO.OUT)
     GPIO.output(pin6, GPIO.LOW)
