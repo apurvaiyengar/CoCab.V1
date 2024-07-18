@@ -57,9 +57,10 @@ def motor_on(rotations):
     GPIO_pins = (pin1, pin2, pin3) 
     direction= pin5       
     step = pin4
-    GPIO.output(pin_reset, GPIO.HIGH)      
+         
     stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
     GPIO.setmode(GPIO.BCM)
+    GPIO.output(pin_reset, GPIO.HIGH) 
     GPIO.setup(pin6, GPIO.OUT)
     GPIO.output(pin6, GPIO.LOW)
     lin_count = 100
