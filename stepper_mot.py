@@ -23,6 +23,7 @@ def pin_reset():
     pin4 = 19
     pin5 = 26
     pin6 = 4
+    pin_reset = 17
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(pin1, GPIO.OUT)
     GPIO.setup(pin2, GPIO.OUT)
@@ -30,6 +31,7 @@ def pin_reset():
     GPIO.setup(pin4, GPIO.OUT)
     GPIO.setup(pin5, GPIO.OUT)
     GPIO.setup(pin6, GPIO.OUT)
+    GPIO.setup(pin_reset, GPIO.OUT)
     
     GPIO.output(pin1, GPIO.LOW)
     GPIO.output(pin2, GPIO.LOW)
@@ -37,6 +39,7 @@ def pin_reset():
     GPIO.output(pin4, GPIO.LOW)
     GPIO.output(pin5, GPIO.LOW)
     GPIO.output(pin6, GPIO.LOW)
+    GPIO.output(pin_reset, GPIO.LOW)
     GPIO.cleanup()
     
 pin_reset()   
@@ -52,7 +55,8 @@ def motor_on(rotations):
     pin6 = 4 
     GPIO_pins = (pin1, pin2, pin3) 
     direction= pin5       
-    step = pin4      
+    step = pin4
+    GPIO.output(pin_reset, GPIO.HIGH)      
     stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(pin6, GPIO.OUT)
