@@ -180,7 +180,8 @@ def lin_reverse():
         exit(1)
     pin_reset()
    
-
+motor_on(3)
+pin_reset()
 # TESTING DUAL CAMERA 
 cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L2)
 cap1 = cv2.VideoCapture('/dev/video2', cv2.CAP_V4L2) 
@@ -209,7 +210,7 @@ while True:
     # show the preview
     cv2.imshow("code detector top", image)
     cv2.imshow('code detector bottom', image1)
-    motor_on(1)
+    #motor_on(1)
     if image.any():
         # take a picture
         cv2.imwrite('testimage.jpg', image)
@@ -233,12 +234,12 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    motor_on(1)
+                    #motor_on(1)
                     lin_reverse()
                     #motor_on(96, True)
                 else:
                     print("Bad code")
-                    motor_on(1)
+                    #motor_on(1)
             else:
                 print("No code")
         # if not, try again after 0.002 sec
@@ -270,12 +271,12 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    motor_on(1)
+                    #motor_on(1)
                     lin_reverse()
                     #motor_on(1)
                 else:
                     print("Bad code")
-                    motor_on(1)
+                    #motor_on(1)
             else:
                 print("No code")
         # if not, try again after 0.01 sec
