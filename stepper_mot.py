@@ -73,4 +73,4 @@ def motor_on(rotations):
         pin_reset()
         exit(1)
     pin_reset()
-
+motor_on(1)
