@@ -189,11 +189,8 @@ cap1 = cv2.VideoCapture('/dev/video2', cv2.CAP_V4L2)
 cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 cap1.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 
-if cap.isOpened() is False :
-    exit(0)
-if cap1.isOpened() is False :
-    print('cam2 not on')
-    exit(0)
+assert cap.isOpened()
+assert cap1.isOpened()
 
 # create an empty set for codes
 codeSet = OrderedSet()
