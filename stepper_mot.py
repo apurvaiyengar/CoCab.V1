@@ -70,6 +70,7 @@ def motor_on(rotations):
     i = 0
     try:
         while i in range(total_count):
+            print(i)
             GPIO.output(pin6, GPIO.HIGH)
             stepper.motor_go(False, "1/8" , lin_count, .02, False, .05)
             GPIO.output(pin6, GPIO.LOW)
