@@ -7,7 +7,7 @@ from ordered_set import OrderedSet
 import RPi.GPIO as GPIO
 from RpiMotorLib import RpiMotorLib
 import stop_all
-
+GPIO.setmode(GPIO.BCM)
 ## BOARD SET UP
 # assign pins
 pin1 = 5
@@ -246,30 +246,6 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    GPIO.setmode(GPIO.BCM)
-                    GPIO.setup(17, GPIO.OUT)
-                    GPIO.output(17, GPIO.LOW)
-                    GPIO.setup(4, GPIO.OUT)
-                    GPIO.output(4, GPIO.LOW)
-
-
-                    GPIO.setup(5, GPIO.OUT)
-                    GPIO.output(5, GPIO.HIGH)
-                    GPIO.setup(6, GPIO.OUT)
-                    GPIO.output(6, GPIO.HIGH)
-                    GPIO.setup(13, GPIO.OUT)
-                    GPIO.output(13, GPIO.HIGH)
-
-                    GPIO.setup(17, GPIO.OUT)
-                    GPIO.output(17, GPIO.HIGH)
-                    GPIO.setup(4, GPIO.OUT)
-                    GPIO.output(4, GPIO.HIGH) 
-
-                    GPIO_pins = (pin1, pin2, pin3) 
-                    direction= pin5       
-                    step = pin4
-                            
-                    stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
                     stepper.motor_go(False, "1/16", 5, .01, False, .05)
                     lin_reverse()
                     
