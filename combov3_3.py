@@ -68,12 +68,32 @@ def pin_reset():
 pin_reset()   
 
 ## MOTOR SET UP
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+GPIO.output(17, GPIO.LOW)
+GPIO.setup(4, GPIO.OUT)
+GPIO.output(4, GPIO.LOW)
+
+
+GPIO.setup(5, GPIO.OUT)
+GPIO.output(5, GPIO.HIGH)
+GPIO.setup(6, GPIO.OUT)
+GPIO.output(6, GPIO.HIGH)
+GPIO.setup(13, GPIO.OUT)
+GPIO.output(13, GPIO.HIGH)
+
+GPIO.setup(17, GPIO.OUT)
+GPIO.output(17, GPIO.HIGH)
+GPIO.setup(4, GPIO.OUT)
+GPIO.output(4, GPIO.HIGH) 
+
 GPIO_pins = (pin1, pin2, pin3) 
 direction= pin5       
 step = pin4
          
 stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
-
+time.sleep(1)
 
 ## LINEAR FORWARD   
 def lin_forward():
