@@ -93,7 +93,7 @@ def motor_on(rotations):
         while i in range(total_count):
             print(i)
             GPIO.output(pin6, GPIO.HIGH)
-            stepper.motor_go(False, "1/8" , lin_count, .05, False, .05)
+            stepper.motor_go(False, "1/8" , lin_count, .01, False, .05)
             #GPIO.output(pin6, GPIO.LOW)
             i = i + 1
         GPIO.output(pin7, GPIO.LOW)
@@ -263,7 +263,7 @@ while True:
         # if not, try again after 0.002 sec
         if not quirc.decode(img):
             print("No code :(")
-            #time.sleep(0.002)
+            time.sleep(0.002)
 
     if image1.any():
         # take a picture
@@ -278,7 +278,7 @@ while True:
         if quirc.decode(img1):
             decodedData1 = quirc.decode(img1)
             if not decodedData1:
-                print("No code :(")
+                print("No code :((")
             decodedText1 = decodedData1[0][1].payload.decode('utf-8')
             print(decodedText1)
             # check if code is the correct format & has already been scanned
@@ -300,7 +300,7 @@ while True:
         # if not, try again after 0.01 sec
         if not quirc.decode(img1):
             print("No code :(")
-            #time.sleep(0.002)
+            time.sleep(0.002)
            
     if(cv2.waitKey(1) == ord("q")):
         break
