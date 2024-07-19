@@ -29,27 +29,36 @@ def pin_reset():
     pin4 = 19
     pin5 = 26
     pin6 = 4
+    pin7 = 17
+
     lin1 = 18
     lin2 = 23
     lin3 = 24
     lin4 = 25
+
     GPIO.setmode(GPIO.BCM)
+
     GPIO.setup(pin1, GPIO.OUT)
     GPIO.setup(pin2, GPIO.OUT)
     GPIO.setup(pin3, GPIO.OUT)
     GPIO.setup(pin4, GPIO.OUT)
     GPIO.setup(pin5, GPIO.OUT)
     GPIO.setup(pin6, GPIO.OUT)
+    GPIO.setup(pin7, GPIO.OUT)
+
     GPIO.setup(lin1, GPIO.OUT)
     GPIO.setup(lin2, GPIO.OUT)
     GPIO.setup(lin3, GPIO.OUT)
     GPIO.setup(lin4, GPIO.OUT)
+
     GPIO.output(pin1, GPIO.LOW)
     GPIO.output(pin2, GPIO.LOW)
     GPIO.output(pin3, GPIO.LOW)
     GPIO.output(pin4, GPIO.LOW)
     GPIO.output(pin5, GPIO.LOW)
     GPIO.output(pin6, GPIO.LOW)
+    GPIO.output(pin7, GPIO.LOW)
+
     GPIO.output(lin1, GPIO.LOW )
     GPIO.output(lin2, GPIO.LOW )
     GPIO.output(lin3, GPIO.LOW )
@@ -58,7 +67,6 @@ def pin_reset():
     
 pin_reset()   
 
-## STEPPER ROTATE
 def motor_on(rotations):
     pin1 = 5
     pin2 = 6
@@ -66,26 +74,32 @@ def motor_on(rotations):
     pin4 = 19
     pin5 = 26
     pin6 = 4 
+    pin7 = 17
     GPIO_pins = (pin1, pin2, pin3) 
     direction= pin5       
-    step = pin4      
+    step = pin4
+         
     stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
     GPIO.setmode(GPIO.BCM)
+    GPIO.setup(pin7, GPIO.OUT)
+    GPIO.output(pin7, GPIO.HIGH)
     GPIO.setup(pin6, GPIO.OUT)
     GPIO.output(pin6, GPIO.LOW)
-    lin_count = 100
+    lin_count = 15
     total_count = lin_count * rotations
+   
     i = 0
     try:
         while i in range(total_count):
+            print(i)
             GPIO.output(pin6, GPIO.HIGH)
-            stepper.motor_go(False, "1/8" , lin_count, .02, False, .05)
-            GPIO.output(pin6, GPIO.LOW)
+            stepper.motor_go(False, "1/8" , lin_count, .05, False, .05)
+            #GPIO.output(pin6, GPIO.LOW)
+            i = i + 1
+        GPIO.output(pin7, GPIO.LOW)
     except KeyboardInterrupt:
-        time.sleep(5)
-        stop_all.close_all()
         pin_reset()
-        
+        exit(1)
     finally:
         pin_reset()
 
@@ -214,7 +228,7 @@ while True:
     # show the preview
     cv2.imshow("code detector top", image)
     cv2.imshow('code detector bottom', image1)
-    #motor_on(1)
+    motor_on(1)
     if image.any():
         # take a picture
         cv2.imwrite('testimage.jpg', image)
@@ -238,12 +252,12 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    #motor_on(1)
+                    motor_on(1)
                     lin_reverse()
-                    #motor_on(96, True)
+                    
                 else:
                     print("Bad code")
-                    #motor_on(1)
+                    motor_on(1)
             else:
                 print("No code")
         # if not, try again after 0.002 sec
@@ -275,12 +289,12 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    #motor_on(1)
+                    motor_on(1)
                     lin_reverse()
-                    #motor_on(1)
+                    
                 else:
                     print("Bad code")
-                    #motor_on(1)
+                    motor_on(1)
             else:
                 print("No code")
         # if not, try again after 0.01 sec
