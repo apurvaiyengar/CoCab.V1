@@ -85,7 +85,7 @@ def motor_on(rotations):
     GPIO.output(pin7, GPIO.HIGH)
     GPIO.setup(pin6, GPIO.OUT)
     GPIO.output(pin6, GPIO.LOW)
-    lin_count = 1
+    lin_count = 4
     total_count = lin_count * rotations
    
     i = 0
@@ -93,7 +93,7 @@ def motor_on(rotations):
         while i in range(total_count):
             print(i)
             GPIO.output(pin6, GPIO.HIGH)
-            stepper.motor_go(False, "1/8" , lin_count, .01, False, .05)
+            stepper.motor_go(False, "1/16" , lin_count, .01, False, .05)
             #GPIO.output(pin6, GPIO.LOW)
             i = i + 1
         GPIO.output(pin7, GPIO.LOW)
