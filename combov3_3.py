@@ -263,7 +263,13 @@ while True:
                     GPIO.setup(17, GPIO.OUT)
                     GPIO.output(17, GPIO.HIGH)
                     GPIO.setup(4, GPIO.OUT)
-                    GPIO.output(4, GPIO.HIGH)
+                    GPIO.output(4, GPIO.HIGH) 
+
+                    GPIO_pins = (pin1, pin2, pin3) 
+                    direction= pin5       
+                    step = pin4
+                            
+                    stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
                     stepper.motor_go(False, "1/16", 5, .01, False, .05)
                     lin_reverse()
                     
