@@ -79,6 +79,7 @@ def motor_on(rotations):
     except KeyboardInterrupt:
         pin_reset()
         exit(1)
-    pin_reset()
+    finally:
+        pin_reset()
 motor_on(1)
 pin_reset()  
