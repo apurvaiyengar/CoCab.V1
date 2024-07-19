@@ -209,7 +209,7 @@ open('sampledata.csv', 'w').truncate()
 
 step_counter = 0
 
-stepper.motor_go(False, "1/16", 5, .01, False, .05)
+stepper.motor_go(False, "1/8", 5, .01, False, .05)
 # begin camera feed
 while True:
     
@@ -221,7 +221,7 @@ while True:
     cv2.imshow("code detector top", image)
     cv2.imshow('code detector bottom', image1)
     # move the motor 
-    stepper.motor_go(False, "1/16", 5, .01, False, .05)
+    stepper.motor_go(False, "1/8", 5, .01, False, .05)
 
     if image.any():
         # take a picture
@@ -246,12 +246,12 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    stepper.motor_go(False, "1/16", 5, .01, False, .05)
+                    stepper.motor_go(False, "1/8", 5, .01, False, .05)
                     lin_reverse()
                     
                 else:
                     print("Bad code")
-                    stepper.motor_go(False, "1/16", 5, .01, False, .05)
+                    stepper.motor_go(False, "1/8", 5, .01, False, .05)
             else:
                 print("No code")
         # if not, try again after 0.002 sec
@@ -283,12 +283,12 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    stepper.motor_go(False, "1/16", 5, .01, False, .05)
+                    stepper.motor_go(False, "1/8", 5, .01, False, .05)
                     lin_reverse()
                     
                 else:
                     print("Bad code")
-                    stepper.motor_go(False, "1/16", 5, .01, False, .05)
+                    stepper.motor_go(False, "1/8", 5, .01, False, .05)
             else:
                 print("No code")
         # if not, try again after 0.01 sec
