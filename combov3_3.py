@@ -67,6 +67,7 @@ def pin_reset():
     
 pin_reset()   
 
+## MOTOR SET UP
 GPIO_pins = (pin1, pin2, pin3) 
 direction= pin5       
 step = pin4
@@ -187,6 +188,8 @@ codeSet = OrderedSet()
 open('sampledata.csv', 'w').truncate()
 
 step_counter = 0
+
+stepper.motor_go(False, "1/16", 5, .01, False, .05)
 # begin camera feed
 while True:
     
@@ -199,7 +202,7 @@ while True:
     cv2.imshow('code detector bottom', image1)
     # move the motor 
     stepper.motor_go(False, "1/16", 5, .01, False, .05)
-    
+
     if image.any():
         # take a picture
         cv2.imwrite('testimage.jpg', image)
