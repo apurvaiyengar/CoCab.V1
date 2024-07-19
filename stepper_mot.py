@@ -64,7 +64,7 @@ def motor_on(rotations):
     GPIO.output(pin7, GPIO.HIGH) 
     GPIO.setup(pin6, GPIO.OUT)
     GPIO.output(pin6, GPIO.LOW)
-    lin_count = 50
+    lin_count = 10
     total_count = lin_count * rotations
    
     i = 0
