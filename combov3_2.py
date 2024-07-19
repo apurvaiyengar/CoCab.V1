@@ -85,7 +85,7 @@ def motor_on(rotations):
     GPIO.output(pin7, GPIO.HIGH)
     GPIO.setup(pin6, GPIO.OUT)
     GPIO.output(pin6, GPIO.LOW)
-    lin_count = 5
+    lin_count = 1
     total_count = lin_count * rotations
    
     i = 0
@@ -267,7 +267,7 @@ while True:
 
     if image1.any():
         # take a picture
-        print('cam 2 on')
+        
         cv2.imwrite('testimage.jpg', image1)
         # prep the image for decoding
         img1 = cv2.imread('testimage.jpg', cv2.IMREAD_GRAYSCALE)
