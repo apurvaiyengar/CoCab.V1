@@ -23,7 +23,7 @@ def pin_reset():
     pin4 = 19
     pin5 = 26
     pin6 = 4
-    pin_reset = 17
+    pin7 = 17
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(pin1, GPIO.OUT)
     GPIO.setup(pin2, GPIO.OUT)
@@ -31,7 +31,7 @@ def pin_reset():
     GPIO.setup(pin4, GPIO.OUT)
     GPIO.setup(pin5, GPIO.OUT)
     GPIO.setup(pin6, GPIO.OUT)
-    GPIO.setup(pin_reset, GPIO.OUT)
+    GPIO.setup(pin7, GPIO.OUT)
     
     GPIO.output(pin1, GPIO.LOW)
     GPIO.output(pin2, GPIO.LOW)
@@ -39,7 +39,7 @@ def pin_reset():
     GPIO.output(pin4, GPIO.LOW)
     GPIO.output(pin5, GPIO.LOW)
     GPIO.output(pin6, GPIO.LOW)
-    GPIO.output(pin_reset, GPIO.LOW)
+    GPIO.output(pin7, GPIO.LOW)
     GPIO.cleanup()
     
 pin_reset()   
@@ -53,18 +53,18 @@ def motor_on(rotations):
     pin4 = 19
     pin5 = 26
     pin6 = 4 
-    pin_reset = 17
+    pin7 = 17
     GPIO_pins = (pin1, pin2, pin3) 
     direction= pin5       
     step = pin4
          
     stepper = RpiMotorLib.A4988Nema(direction, step, GPIO_pins, "DRV8825")
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(pin_reset, GPIO.OUT)
-    GPIO.output(pin_reset, GPIO.HIGH) 
+    GPIO.setup(pin7, GPIO.OUT)
+    GPIO.output(pin7, GPIO.HIGH) 
     GPIO.setup(pin6, GPIO.OUT)
     GPIO.output(pin6, GPIO.LOW)
-    lin_count = 5
+    lin_count = 50
     total_count = lin_count * rotations
    
     i = 0
@@ -75,7 +75,7 @@ def motor_on(rotations):
             stepper.motor_go(False, "1/8" , lin_count, .02, False, .05)
             GPIO.output(pin6, GPIO.LOW)
             i = i + 1
-        GPIO.output(pin_reset, GPIO.LOW)
+        GPIO.output(pin7, GPIO.LOW)
     except KeyboardInterrupt:
         pin_reset()
         exit(1)
