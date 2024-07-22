@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 from RpiMotorLib import RpiMotorLib
 import stop_all
 GPIO.setmode(GPIO.BCM)
-GPIO.cleanup()
+
 ## BOARD SET UP
 # assign pins
 pin1 = 5
@@ -209,7 +209,7 @@ open('sampledata.csv', 'w').truncate()
 
 step_counter = 0
 
-stepper.motor_go(False, "1/4", 5, .01, False, .05)
+
 # begin camera feed
 while True:
     
@@ -221,7 +221,7 @@ while True:
     cv2.imshow("code detector top", image)
     cv2.imshow('code detector bottom', image1)
     # move the motor 
-    stepper.motor_go(False, "1/4", 5, .01, False, .05)
+    stepper.motor_go(False, "1/8", 5, .01, False, .05)
 
     if image.any():
         # take a picture
@@ -246,12 +246,12 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    stepper.motor_go(False, "1/4", 10, .01, False, .05)
+                    stepper.motor_go(False, "1/8", 5, .01, False, .05)
                     lin_reverse()
                     
                 else:
                     print("Bad code")
-                    stepper.motor_go(False, "1/4", 5, .01, False, .05)
+                    stepper.motor_go(False, "1/8", 5, .01, False, .05)
             else:
                 print("No code")
         # if not, try again after 0.002 sec
@@ -283,12 +283,12 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    stepper.motor_go(False, "1/4", 5, .01, False, .05)
+                    stepper.motor_go(False, "1/8", 50, .01, False, .05)
                     lin_reverse()
                     
                 else:
                     print("Bad code")
-                    stepper.motor_go(False, "1/4", 5, .01, False, .05)
+                    stepper.motor_go(False, "1/8", 5, .01, False, .05)
             else:
                 print("No code")
         # if not, try again after 0.01 sec
@@ -298,10 +298,12 @@ while True:
            
     if(cv2.waitKey(1) == ord("q")):
         break
-# release camera and close all windows
+# release camera, close all windows, cleanup board pins
 cap.release()
 cap1.release()
 cv2.destroyAllWindows()
+
+GPIO.cleanup()
 
 # convert set to a list
 codeList = list(codeSet)
@@ -311,3 +313,5 @@ print(codeList)
 file = open('sampledata.csv', 'a+', newline = '')
 with file:
     csv.writer(file).writerows([[item]for item in codeList])
+
+
