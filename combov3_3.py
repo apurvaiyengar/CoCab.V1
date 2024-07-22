@@ -242,17 +242,16 @@ while True:
             # check if code is the correct format & has already been scanned
             if isinstance(decodedText, str) == True:
                 if len(decodedText) == 5 and decodedText[0].isalpha() == True and decodedText[1:4].isdigit() == True:
+                    print('got here')
                     if decodedText not in open('sampledata.csv').read() and decodedText not in codeSet:
                         codeSet.add(decodedText)
                         print("Good code!")
                         lin_forward()
                         time.sleep(1)
-                        print(GPIO.input(pin6))
-                        print(GPIO.input(pin7))
                         stepper.motor_go(False, "1/8", 5, .01, False, .05)
                         lin_reverse()
-                        stepper.motor_go(False, "1/8", 50, .01, False, .05)
-                        print('got here')
+                        #stepper.motor_go(False, "1/8", 50, .01, False, .05)
+                        
                     
                 else:
                     print("Bad code")
@@ -261,7 +260,7 @@ while True:
                 print("No code")
         # if not, try again after 0.002 sec
         if not quirc.decode(img):
-            print("No code :(")
+            #print("No code :(")
             time.sleep(0.002)
 
     if image1.any():
@@ -299,7 +298,7 @@ while True:
                 print("No code")
         # if not, try again after 0.01 sec
         if not quirc.decode(img1):
-            print("No code :(")
+            #print("No code :(")
             time.sleep(0.002)
            
     if(cv2.waitKey(1) == ord("q")):
