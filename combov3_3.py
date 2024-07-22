@@ -285,6 +285,7 @@ while True:
                     time.sleep(1)
                     stepper.motor_go(False, "1/8", 50, .01, False, .05)
                     lin_reverse()
+                    stepper.motor_go(False, "1/8", 50, .01, False, .05)
                     
                 else:
                     print("Bad code")
