@@ -243,13 +243,13 @@ while True:
                 if len(decodedText) == 5 and decodedText[0].isalpha() == True and decodedText[1:4].isdigit() == True:
                     if decodedText not in open('sampledata.csv').read() and decodedText not in codeSet:
                         codeSet.add(decodedText)
-                    print("Good code!")
-                    lin_forward()
-                    time.sleep(1)
-                    stepper.motor_go(False, "1/8", 5, .01, False, .05)
-                    lin_reverse()
-                    stepper.motor_go(False, "1/8", 50, .01, False, .05)
-                    print('got here')
+                        print("Good code!")
+                        lin_forward()
+                        time.sleep(1)
+                        stepper.motor_go(False, "1/8", 5, .01, False, .05)
+                        lin_reverse()
+                        stepper.motor_go(False, "1/8", 50, .01, False, .05)
+                        print('got here')
                     
                 else:
                     print("Bad code")
@@ -282,11 +282,11 @@ while True:
                 if len(decodedText1) == 5 and decodedText1[0].isalpha() == True and decodedText1[1:4].isdigit() == True:
                     if decodedText1 not in open('sampledata.csv').read() and decodedText1 not in codeSet:
                         codeSet.add(decodedText1)
-                    print("Good code!")
-                    lin_forward()
-                    time.sleep(1)
-                    stepper.motor_go(False, "1/8", 50, .01, False, .05)
-                    lin_reverse()
+                        print("Good code!")
+                        lin_forward()
+                        time.sleep(1)
+                        stepper.motor_go(False, "1/8", 50, .01, False, .05)
+                        lin_reverse()
                     
                     
                 else:
