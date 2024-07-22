@@ -222,7 +222,7 @@ while True:
     cv2.imshow("code detector top", image)
     cv2.imshow('code detector bottom', image1)
     # move the motor 
-    stepper.motor_go(False, "1/8", 5, .01, False, .05)
+    stepper.motor_go(False, "1/16", 5, .01, False, .05)
 
     if image.any():
         # take a picture
@@ -242,20 +242,19 @@ while True:
             # check if code is the correct format & has already been scanned
             if isinstance(decodedText, str) == True:
                 if len(decodedText) == 5 and decodedText[0].isalpha() == True and decodedText[1:4].isdigit() == True:
-                    print('got here')
                     if decodedText not in open('sampledata.csv').read() and decodedText not in codeSet:
                         codeSet.add(decodedText)
                         print("Good code!")
                         lin_forward()
                         time.sleep(1)
-                        stepper.motor_go(False, "1/8", 5, .01, False, .05)
+                        stepper.motor_go(False, "1/16", 5, .01, False, .05)
                         lin_reverse()
-                        #stepper.motor_go(False, "1/8", 50, .01, False, .05)
+                        
                         
                     
                 else:
                     print("Bad code")
-                    stepper.motor_go(False, "1/8", 5, .01, False, .05)
+                    stepper.motor_go(False, "1/16", 5, .01, False, .05)
             else:
                 print("No code")
         # if not, try again after 0.002 sec
@@ -287,13 +286,13 @@ while True:
                         print("Good code!")
                         lin_forward()
                         time.sleep(1)
-                        stepper.motor_go(False, "1/8", 50, .01, False, .05)
+                        stepper.motor_go(False, "1/16", 50, .01, False, .05)
                         lin_reverse()
                     
                     
                 else:
                     print("Bad code")
-                    stepper.motor_go(False, "1/8", 5, .01, False, .05)
+                    stepper.motor_go(False, "1/16", 5, .01, False, .05)
             else:
                 print("No code")
         # if not, try again after 0.01 sec
