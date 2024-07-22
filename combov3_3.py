@@ -8,6 +8,7 @@ import RPi.GPIO as GPIO
 from RpiMotorLib import RpiMotorLib
 import stop_all
 GPIO.setmode(GPIO.BCM)
+GPIO.cleanup()
 ## BOARD SET UP
 # assign pins
 pin1 = 5
@@ -63,7 +64,6 @@ def pin_reset():
     GPIO.output(lin2, GPIO.LOW )
     GPIO.output(lin3, GPIO.LOW )
     GPIO.output(lin4, GPIO.LOW )
-    GPIO.cleanup()
     
 pin_reset()   
 
