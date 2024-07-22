@@ -17,6 +17,7 @@ pin3 = 13
 pin4 = 19
 pin5 = 26
 pin6 = 4
+pin7 = 17
 lin1 = 18
 lin2 = 23
 lin3 = 24
@@ -246,6 +247,8 @@ while True:
                         print("Good code!")
                         lin_forward()
                         time.sleep(1)
+                        print(GPIO.input(pin6))
+                        print(GPIO.input(pin7))
                         stepper.motor_go(False, "1/8", 5, .01, False, .05)
                         lin_reverse()
                         stepper.motor_go(False, "1/8", 50, .01, False, .05)
