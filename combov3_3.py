@@ -58,8 +58,8 @@ def pin_reset():
     GPIO.output(pin3, GPIO.LOW)
     GPIO.output(pin4, GPIO.LOW)
     GPIO.output(pin5, GPIO.LOW)
-    GPIO.output(pin6, GPIO.LOW)
-    GPIO.output(pin7, GPIO.LOW)
+    GPIO.output(pin6, GPIO.HIGH)
+    GPIO.output(pin7, GPIO.HIGH)
 
     GPIO.output(lin1, GPIO.LOW )
     GPIO.output(lin2, GPIO.LOW )
