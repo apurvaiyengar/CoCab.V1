@@ -246,8 +246,7 @@ while True:
                     print("Good code!")
                     lin_forward()
                     time.sleep(1)
-                    print(stepper)
-                    stepper.motor_go(False, "1/4", 5, .01, False, .05)
+                    stepper.motor_go(False, "1/4", 10, .01, False, .05)
                     lin_reverse()
                     
                 else:
