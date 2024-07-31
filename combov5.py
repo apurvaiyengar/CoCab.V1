@@ -194,25 +194,26 @@ def lin_reverse():
 
 
 # TESTING DUAL CAMERA 
-cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L2)
-cap1 = cv2.VideoCapture('/dev/video2', cv2.CAP_V4L2) 
 
-## CAMERA SET UP
-cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
-cap1.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
-
-assert cap.isOpened()
-assert cap1.isOpened()
-
-# create an empty set for codes
-codeSet = OrderedSet()
-
-# for TESTING ONLY, clear csv of contents
-open('data_container.csv', 'w').truncate()
-
-step_counter = 0
 
 def start():
+    cap = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L2)
+    cap1 = cv2.VideoCapture('/dev/video2', cv2.CAP_V4L2) 
+
+    ## CAMERA SET UP
+    cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+    cap1.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+
+    assert cap.isOpened()
+    assert cap1.isOpened()
+
+    # create an empty set for codes
+    codeSet = OrderedSet()
+
+    # for TESTING ONLY, clear csv of contents
+    open('data_container.csv', 'w').truncate()
+
+    step_counter = 0
     try:
         # begin camera feed
         while True:
