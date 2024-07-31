@@ -249,9 +249,6 @@ while True:
                         time.sleep(1)
                         stepper.motor_go(False, "1/16", 5, .01, False, .05)
                         lin_reverse()
-                        
-                        
-                    
                 else:
                     print("Bad code")
                     stepper.motor_go(False, "1/16", 5, .01, False, .05)
@@ -287,9 +284,7 @@ while True:
                         lin_forward()
                         time.sleep(1)
                         stepper.motor_go(False, "1/16", 50, .01, False, .05)
-                        lin_reverse()
-                    
-                    
+                        lin_reverse()   
                 else:
                     print("Bad code")
                     stepper.motor_go(False, "1/16", 5, .01, False, .05)
@@ -302,11 +297,12 @@ while True:
            
     if(cv2.waitKey(1) == ord("q")):
         break
+
+    
 # release camera, close all windows, cleanup board pins
 cap.release()
 cap1.release()
 cv2.destroyAllWindows()
-
 GPIO.cleanup()
 
 # convert set to a list
