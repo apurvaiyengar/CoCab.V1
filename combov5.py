@@ -208,7 +208,7 @@ assert cap1.isOpened()
 codeSet = OrderedSet()
 
 # for TESTING ONLY, clear csv of contents
-open('sampledata.csv', 'w').truncate()
+open('data_container.csv', 'w').truncate()
 
 step_counter = 0
 
@@ -222,8 +222,8 @@ def start():
             ret1, image1 = cap1.read()
             
             # show the preview
-            cv2.imshow("code detector top", image)
-            cv2.imshow('code detector bottom', image1)
+            #cv2.imshow("code detector top", image)
+            #cv2.imshow('code detector bottom', image1)
             # move the motor 
             stepper.motor_go(False, "1/16", 5, .01, False, .05)
 
@@ -312,7 +312,7 @@ def start():
         print(codeList)
 
         # write data to csv
-        file = open('sampledata.csv', 'a+', newline = '')
+        file = open('data_container.csv', 'a+', newline = '')
         with file:
             csv.writer(file).writerows([[item]for item in codeList])
 
